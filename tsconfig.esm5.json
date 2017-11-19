@@ -1,6 +1,6 @@
 {
-   "extends": "./tsconfig.lib",
-   "compilerOptions": {
-      "outDir": "dist/esm5"
-   }
+  "extends":         "./tsconfig.lib",
+  "compilerOptions": {
+    "outDir": "dist/esm5"
+  }
 }

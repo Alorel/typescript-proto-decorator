@@ -1,8 +1,8 @@
 {
-   "extends": "./tsconfig.lib",
-   "compilerOptions": {
-      "outDir": "dist/es5",
-      "module": "commonjs",
-      "declaration": true
-   }
+  "extends":         "./tsconfig.lib",
+  "compilerOptions": {
+    "outDir":      "dist/es5",
+    "module":      "commonjs",
+    "declaration": true
+  }
 }
