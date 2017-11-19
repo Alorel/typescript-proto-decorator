@@ -1,0 +1,32 @@
+base: &base
+  language: node_js
+  node_js: 9
+  sudo: false
+  cache:
+    directories:
+      - node_modules
+  before_script: greenkeeper-lockfile-update
+  before_cache: rm -rf ./node_modules/.cache
+  after_success: cat ./coverage/lcov.info | coveralls
+  before_deploy: npm run build
+  script:
+    - npm run lint
+    - npm test
+
+jobs:
+  include:
+    - <<: *base
+      if: type IN (push, cron)
+      env:
+        - secure: "cSSf8X1L8kQo5Wsoy9UdtSY/tdKWCDyX8C+0F45E+BW+8wLkfWcWOzL0ztZOVXRbcbZote6U0I8YXbBsFpK738NVHrjt9bWaj4JHw43fXMg/1ynqEuIGTPAvMlctM++qXMw3txZKd02XEIISzhzH0M+7bZNJajBMtFvIx+JLpPd5XTgz5BsEkCCdX+uLOfFVdYEZGx3Rm/fSmkmspuDyBqVEKHX6Fj+AS8tHachR42V6eaGNySOU9loE8Dyc5KRhpY/son5l1e+cbbS9w49NPyAoH7YyFwEtOvaeZmTx7wI0RDUZ+76WYTdunfOJdVZ1R2lJN2STCcI4auvowlTin7SeOruw7BFqElgmMo9CbZUOjSK00pkLARRV44M0X48Ip+TZeucLkeBde0y3yOPnhupKCTusY0zVIZLqeXyarsJLyC9KP71XPGKB7/cz8gGgHasHBS55w9uB20nMQCJjyzloSholfF0pTkDFmkztq/Wf3LxyV0251bJ2OSodjEeJlrIEddR/2jrZx4X6S1FAPn2FlNdJngvLoN8DAK+eQrTnegqzAlp+eeN7K8EZQaXhyrg5JRUsrdLbUVj7UcXcvFnwTwup3Jt9ryIuzWz+5fKNwiWx7S1JKgX78Cjta5RrQbjYLW1B44QxFzGyAdhns+ChVkxhcxwfbjFT7JexCg8="
+      after_script: greenkeeper-lockfile-upload
+      deploy:
+          provider: npm
+          skip_cleanup: true
+          email: a.molcanovas@gmail.com
+          api_key:
+            secure: "uauUeMQWOpDkWWKa2rhqWJSI8UMOZ2FzQOwYik+8BbUFUurCGphc9FHGUTyYkLYx7QoMZjdsDFEBQlQWQA4xnKX0fxyBtKiv6401u8EQCyXb8h7uW0gdugMViz9YaYRdXHLqtZ49Ld8WZwDBbvwwumav/jetrQ9FD/5+npmoujAovoeaPX2TW9LLoAS0X7bJsNztGW+V2SZ1AL+z0xQanliwn3POZ6hdphWOe+YdvA4VgrVfb168Bg8h0b7iK5IqUIOGNOOu7NnyJalJVSb2R0tmTmiZ1o4c+cmiiEfMWEoUYtqjdAPwAhs9hs720xXnqw3emj6uUjDeQ5WGaxmUvkNA+zc9o+3NJSAuWhhN0qHV9gHHiNzHAuQvoqabKAKk5ii4y00AZlhw78CnY/dO/JX3K4NwhHEDHjkvtst4g/BmrDzPzT4G7jIs6yLmZaegLBNd8dVsQLkQ7FcswQQtrOSrd7muVXt1QkkUOPllRD5BDdXlHmZkqLm+V2O//04bK23zSc82Jj7cuFHdIWQ5+tCnyVl3Z7E+cmMU9KM3ESUiamePk/aKyWxKc2wdjdtjd/XHLu4UcT6rIJxUqPKiKQtnAJFrAzUpQBYp+Sq+q0Q1I3mO4MX08clXL0427tgpPFsHg3JTfJbsrqWVCOnd01kSV6io6t3VVVHJeqIpY38="
+          on:
+            tags: true
+    - <<: *base
+      if: NOT type IN (push, cron)
