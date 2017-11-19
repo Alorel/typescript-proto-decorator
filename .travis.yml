@@ -19,7 +19,7 @@ jobs:
       if: type IN (push, cron)
       env:
         - secure: "cSSf8X1L8kQo5Wsoy9UdtSY/tdKWCDyX8C+0F45E+BW+8wLkfWcWOzL0ztZOVXRbcbZote6U0I8YXbBsFpK738NVHrjt9bWaj4JHw43fXMg/1ynqEuIGTPAvMlctM++qXMw3txZKd02XEIISzhzH0M+7bZNJajBMtFvIx+JLpPd5XTgz5BsEkCCdX+uLOfFVdYEZGx3Rm/fSmkmspuDyBqVEKHX6Fj+AS8tHachR42V6eaGNySOU9loE8Dyc5KRhpY/son5l1e+cbbS9w49NPyAoH7YyFwEtOvaeZmTx7wI0RDUZ+76WYTdunfOJdVZ1R2lJN2STCcI4auvowlTin7SeOruw7BFqElgmMo9CbZUOjSK00pkLARRV44M0X48Ip+TZeucLkeBde0y3yOPnhupKCTusY0zVIZLqeXyarsJLyC9KP71XPGKB7/cz8gGgHasHBS55w9uB20nMQCJjyzloSholfF0pTkDFmkztq/Wf3LxyV0251bJ2OSodjEeJlrIEddR/2jrZx4X6S1FAPn2FlNdJngvLoN8DAK+eQrTnegqzAlp+eeN7K8EZQaXhyrg5JRUsrdLbUVj7UcXcvFnwTwup3Jt9ryIuzWz+5fKNwiWx7S1JKgX78Cjta5RrQbjYLW1B44QxFzGyAdhns+ChVkxhcxwfbjFT7JexCg8="
-      after_script: greenkeeper-lockfile-upload
+      after_script: if [ $GH_TOKEN ]; then greenkeeper-lockfile-upload; fi;
       deploy:
           provider: npm
           skip_cleanup: true
