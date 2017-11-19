@@ -1,4 +1,4 @@
-# Typescript Lazy Getter
+# Typescript Proto Decorator
 
 [![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=master)](https://travis-ci.org/Alorel/typescript-proto-decorator)
 [![Coverage Status](https://coveralls.io/repos/github/Alorel/typescript-proto-decorator/badge.svg?branch=master)](https://coveralls.io/github/Alorel/typescript-proto-decorator?branch=master)
