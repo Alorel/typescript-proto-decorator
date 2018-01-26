@@ -47,7 +47,7 @@
   "homepage": "https://github.com/Alorel/typescript-proto-decorator",
   "devDependencies": {
     "@types/node": "^9.3.0",
-    "ava": "^0.24.0",
+    "ava": "^0.25.0",
     "concurrently": "^3.5.1",
     "coveralls": "^3.0.0",
     "custom-tslint-formatters": "^2.1.1",
