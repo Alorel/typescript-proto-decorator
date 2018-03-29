@@ -17,21 +17,7 @@ npm install typescript-proto-decorator
  * @param value The value to set
  * @param options Options to set. Defaults to configurable, enumerable and writable.
  */
-export function Proto(value: any, options?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>): PropertyDecorator {
-  return function(target: any, propertyKey: string) {
-    const descriptor: PropertyDescriptor = Object.assign(
-      {
-        configurable: true,
-        enumerable: true,
-        value,
-        writable: true
-      },
-      options
-    );
-
-    Object.defineProperty(target.constructor.prototype, propertyKey, descriptor);
-  };
-}
+function Proto(value: any, options?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>): PropertyDecorator;
 ```
 
 # Usage
