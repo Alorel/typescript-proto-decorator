@@ -1,16 +1,21 @@
 /**
  * Sets a value on the class' prototype
  * @param value The value to set
- * @param configurable Whether the value should be configurable
- * @param enumerable Whether the value should be enumerable
- * @return {(target: any, prop: string) => void}
+ * @param options Options to set. Defaults to configurable, enumerable and writable.
  */
-export function Proto(value: any, configurable = true, enumerable = true): (target: any, prop: string) => void {
+//tslint:disable-next-line:max-line-length
+export function Proto(value: any, options?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>): PropertyDecorator {
   return function(target: any, propertyKey: string) {
-    Object.defineProperty(target.constructor.prototype, propertyKey, {
-      configurable,
-      enumerable,
-      value
-    });
+    const descriptor: PropertyDescriptor = Object.assign(
+      {
+        configurable: true,
+        enumerable: true,
+        value,
+        writable: true
+      },
+      options
+    );
+
+    Object.defineProperty(target.constructor.prototype, propertyKey, descriptor);
   };
 }

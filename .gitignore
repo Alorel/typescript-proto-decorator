@@ -5,6 +5,4 @@
 /test/*.js.map
 /src/*.js
 /src/*.js.map
-/coverage/
-/.nyc_output/
 /dist/

@@ -1,9 +1,13 @@
 {
-  "extends":         "./tsconfig.base",
+  "extends": "./tsconfig.base",
   "compilerOptions": {
-    "rootDir": "./src"
+    "rootDir": "./src",
+    "lib": [
+      "ES5",
+      "ES6"
+    ]
   },
-  "files":           [
+  "files": [
     "./src/ProtoDecorator.ts"
   ]
 }

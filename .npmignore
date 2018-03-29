@@ -3,10 +3,8 @@
 /*.tgz
 /test/
 /src/
-/coverage/
-/.nyc_output/
 /tslint.json
 /tsconfig.*.json
-/.snyk
 /.travis.yml
-/.nycrc
+/mocha.opts
+/dist/**/*.js.map
