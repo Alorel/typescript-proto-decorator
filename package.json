@@ -21,7 +21,7 @@
     "watch:esm5": "npm run build:esm5 -- --watch",
     "watch:esm2015": "npm run build:esm2015 -- --watch",
     "watch:es5": "npm run build:es5 -- --watch",
-    "lint": "tslint -p ./tsconfig.json -s node_modules/custom-tslint-formatters/formatters -t grouped",
+    "lint": "tslint -p ./tsconfig.base.json -s node_modules/custom-tslint-formatters/formatters -t grouped",
     "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
