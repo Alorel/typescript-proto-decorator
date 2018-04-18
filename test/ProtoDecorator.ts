@@ -35,8 +35,7 @@ describe('ProtoDecorator', () => {
     });
 
     it('Should be writable', () => {
-      obj.prop = 'bar';
-      expect(obj.prop).to.eq('bar');
+      expect(desc.writable).to.eq(true);
     });
   });
 
@@ -72,7 +71,7 @@ describe('ProtoDecorator', () => {
     });
 
     it('Should not be writable', () => {
-      expect(() => obj.prop = 'bar').to.throw();
+      expect(desc.writable).to.eq(false);
     });
   });
 });
