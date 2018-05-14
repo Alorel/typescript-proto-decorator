@@ -36,3 +36,5 @@ class MyClass {
   public readonly count: number;
 }
 ```
+
+The UMD global is `ProtoDecorator`.
