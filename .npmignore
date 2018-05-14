@@ -8,3 +8,4 @@
 /.travis.yml
 /mocha.opts
 /dist/**/*.js.map
+/webpack.config.js
