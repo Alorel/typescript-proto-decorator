@@ -10,3 +10,8 @@
 /dist/**/*.js.map
 /webpack.config.js
 /yarn.lock
+/git_gpg_keys.asc
+/git_gpg_keys.asc.enc
+/.releaserc.yml
+/prepare-gpg-key.sh
+/yarn-error.log

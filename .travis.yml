@@ -1,31 +1,40 @@
 language: node_js
 sudo: false
-node_js: stable
+node_js:
+- stable
+- lts/carbon
+- lts/boron
 
 cache:
   yarn: true
   directories:
-    - node_modules
+  - node_modules
 before_cache: rm -rf node_modules/.cache
 
 before_install:
-  - npm i -g greenkeeper-lockfile yarn
-  - greenkeeper-lockfile-update
+- npm i -g greenkeeper-lockfile yarn
+- &prepKey if [[ $GH_TOKEN ]]; then ./prepare-gpg-key.sh; fi;
+- greenkeeper-lockfile-update
 
 install: yarn install --check-files
 
-before_script: yarn run lint
+script: yarn run lint && yarn test
 
-script: yarn test
+after_script: if [[ $GH_TOKEN ]]; then greenkeeper-lockfile-upload; fi;
 
-after_script: if [ $GH_TOKEN ]; then greenkeeper-lockfile-upload; fi;
+stages:
+- Test
+- Release
 
-before_deploy: yarn run build
-deploy:
-  provider: npm
-  skip_cleanup: true
-  email: a.molcanovas@gmail.com
-  api_key:
-    secure: lLnzdAIdzZ5qLt7S3YtydSWYIkvgoBQ1PVaFCdIBgAl2tYaffAcOOwStkayZm4gUhw4/JZKGq1wLiiQFxgyLqo8Rsun+L4aGem4iSL1LgPiz4w2xHdbF4bvDG8DDHCVUWNgVb1r/oVQHAYTJPRhpHnY1Z3CNbWyjs553G/oZ10Ml271FMTtgVof4Pg5HAOBbO1rneO5PZKWscr/pPC7sy2qp56WRago9IdXpt9qeWYTeKgS/QT+Yh+so4U6r6+2g+qiam5VQcMs+cbcWG2GkG/XXkDsKyg0w8tsyt5tEYZ4fyRDJA31ZdJeG9tGHRs+sAo97FkBKU8qqugJhLvj5VTlvcpT5onEC7kUre51WYYqB6E/UdHCLmZATwPSaFMJX+2916mVp5rC2JqgW0wOCj4NUmRaPfAps4+JvhuT5PYX5PVHZ891wQLsRPyzsvM1ohlQOCoLoIpMeJPix93pqAWXEPLmyyiJ6VW3VTQzqvtJIybD+gvYgCtvrm7Ucjk9XBsElgToS8p4FF07yOi+Pk70PRm9NPbvR/f+v0QWGgcf+n5cV51LDMWK3OFZ/Nym3nEpEfGKZPqq+m5m0r74/770dfLhZ6RyrtL/O3l4LLswdtSHUJOxmZ5n+Y99+mOuY5BKsQpBdfBTymyy24I4V7sUg4l9+STUtBjSYD7eI8nw=
-  on:
-    tags: true
+jobs:
+  include:
+  - stage: Test
+  - stage: Release
+    node_js: stable
+    if: branch = master AND type = push AND (NOT tag IS present)
+    before_install: &bfiRelease
+    - npm i -g yarn
+    - *prepKey
+    before_script: &bfsRelease yarn run build
+    script: semantic-release
+    after_script: []

@@ -6,3 +6,5 @@
 /src/*.js
 /src/*.js.map
 /dist/
+/git_gpg_keys.asc
+/yarn-error.log
