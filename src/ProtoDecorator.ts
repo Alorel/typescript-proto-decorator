@@ -5,7 +5,7 @@
  */
 //tslint:disable-next-line:max-line-length
 export function Proto(value: any, options?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>): PropertyDecorator {
-  return function(target: any, propertyKey: string) {
+  return (target: any, propertyKey: string) => {
     const descriptor: PropertyDescriptor = Object.assign(
       {
         configurable: true,
