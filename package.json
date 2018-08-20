@@ -1,6 +1,6 @@
 {
   "name": "typescript-proto-decorator",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Sets a value on a class' prototype",
   "main": "dist/es5/ProtoDecorator.js",
   "browser": "dist/umd/ProtoDecorator.js",
