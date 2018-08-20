@@ -31,9 +31,9 @@ jobs:
   - stage: Release
     node_js: stable
     if: branch = master AND type = push AND (NOT tag IS present)
-    before_install: &bfiRelease
+    before_install:
     - npm i -g yarn
     - *prepKey
-    before_script: &bfsRelease yarn run build
+    before_script: yarn run build
     script: semantic-release
     after_script: []
