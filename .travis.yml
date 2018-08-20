@@ -28,7 +28,6 @@ stages:
 
 jobs:
   include:
-  - stage: Test
   - stage: Release
     node_js: stable
     if: branch = master AND type = push AND (NOT tag IS present)
