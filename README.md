@@ -37,4 +37,10 @@ class MyClass {
 }
 ```
 
+# Shortcuts
+
+- You can use `@Proto.immutable` as a shortcut for `{configurable: false, enumerable: true, writable: false}`.
+- You can use `@Proto.hidden` as a shortcut for `{configurable: true, enumerable: false, writable: true}`.
+- You can use `@Proto.immutableHidden` as a shortcut for `{configurable: false, enumerable: false, writable: false}`.
+
 The UMD global is `ProtoDecorator`.

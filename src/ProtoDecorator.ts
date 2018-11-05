@@ -19,3 +19,13 @@ export function Proto(value: any, options?: Pick<PropertyDescriptor, 'configurab
     Object.defineProperty(target.constructor.prototype, propertyKey, descriptor);
   };
 }
+
+Proto.hidden = function (value: any): PropertyDecorator {
+  return Proto(value, {enumerable: false});
+};
+Proto.immutable = function (value: any): PropertyDecorator {
+  return Proto(value, {writable: false, configurable: false});
+};
+Proto.immutableHidden = function (value: any): PropertyDecorator {
+  return Proto(value, {writable: false, configurable: false, enumerable: false});
+};
