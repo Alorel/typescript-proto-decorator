@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/Alorel/typescript-proto-decorator/compare/2.0.2...2.1.0) (2018-11-05)
+
+
+### Features
+
+* Proto.hidden, Proto.immutable & Proto.immutableHidden decorators ([586e8f7](https://github.com/Alorel/typescript-proto-decorator/commit/586e8f7))
+
 ## [2.0.2](https://github.com/Alorel/typescript-proto-decorator/compare/2.0.1...2.0.2) (2018-08-20)
 
 

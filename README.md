@@ -1,6 +1,6 @@
 # Typescript Proto Decorator
 
-[![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=2.0.2)](https://travis-ci.org/Alorel/typescript-proto-decorator)
+[![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=2.1.0)](https://travis-ci.org/Alorel/typescript-proto-decorator)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Alorel/typescript-proto-decorator.svg)](https://greenkeeper.io/)
 
 # Installation
