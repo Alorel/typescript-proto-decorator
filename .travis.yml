@@ -1,6 +1,6 @@
 language: node_js
-sudo: false
-node_js: stable
+node_js:
+  - stable
 
 env:
   global:
@@ -8,8 +8,7 @@ env:
 
 cache:
   yarn: true
-  directories:
-    - node_modules
+
 before_cache: rm -rf node_modules/.cache
 
 before_install:
@@ -17,7 +16,7 @@ before_install:
   - &prepKey if [[ $GH_TOKEN ]]; then ./prepare-gpg-key.sh; fi;
   - greenkeeper-lockfile-update
 
-install: yarn install --check-files --ignore-engines
+install: yarn install --ignore-engines
 
 script: yarn run lint && yarn test
 
@@ -30,6 +29,7 @@ stages:
 jobs:
   include:
     - stage: Release
+      node_js: stable
       if: branch = master AND type = push AND (NOT tag IS present)
       before_install:
         - npm i -g yarn
