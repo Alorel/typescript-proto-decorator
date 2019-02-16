@@ -12,8 +12,8 @@ interface NewDescriptor<T = any> {
   initializer(): T;
 }
 
-function decorateLegacy(proto: any, prop: PropertyKey, value: any, options?: Options): void {
-  Object.defineProperty(proto, prop, Object.assign(
+function decorateLegacy(clazz: any, prop: PropertyKey, value: any, options?: Options): void {
+  Object.defineProperty(clazz.constructor.prototype, prop, Object.assign(
     {configurable: true, enumerable: true, writable: true},
     options,
     {value}
@@ -36,7 +36,7 @@ function decorateNew(desc: NewDescriptor, value: any, options?: Options): void {
 export function Proto(value: any, options?: Options): PropertyDecorator {
   return (target: any, propertyKey: PropertyKey): void => {
     if (propertyKey) {
-      decorateLegacy(target.constructor.prototype, propertyKey, value, options);
+      decorateLegacy(target, propertyKey, value, options);
     } else {
       decorateNew(target, value, options);
     }
