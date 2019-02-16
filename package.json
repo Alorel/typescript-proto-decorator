@@ -15,7 +15,7 @@
   "typings": "dist/es5/ProtoDecorator.d.ts",
   "scripts": {
     "test": "cross-env TS_NODE_PROJECT=./tsconfig.test.json node_modules/.bin/mocha --opts ./mocha.opts",
-    "build": "concurrently \"npm run build:esm5\" \"npm run build:esm2015\" \"npm run build:es5\" \"npm run build:umd\"",
+    "build": "concurrently \"npm --scripts-prepend-node-path=auto run build:esm5\" \"npm --scripts-prepend-node-path=auto run build:esm2015\" \"npm --scripts-prepend-node-path=auto run build:es5\" \"npm --scripts-prepend-node-path=auto run build:umd\"",
     "prebuild:esm5": "rimraf dist/esm5",
     "build:esm5": "tsc -p tsconfig.esm5.json",
     "prebuild:esm2015": "rimraf dist/esm2015",
@@ -24,13 +24,13 @@
     "build:es5": "tsc -p tsconfig.es5.json",
     "prebuild:umd": "rimraf dist/umd",
     "build:umd": "webpack",
-    "watch": "concurrently \"npm run watch:esm5\" \"npm run watch:esm2015\" \"npm run watch:es5\"",
-    "watch:esm5": "npm run build:esm5 -- --watch",
-    "watch:esm2015": "npm run build:esm2015 -- --watch",
-    "watch:es5": "npm run build:es5 -- --watch",
+    "watch": "concurrently \"npm --scripts-prepend-node-path=auto run watch:esm5\" \"npm --scripts-prepend-node-path=auto run watch:esm2015\" \"npm --scripts-prepend-node-path=auto run watch:es5\"",
+    "watch:esm5": "npm --scripts-prepend-node-path=auto run build:esm5 -- --watch",
+    "watch:esm2015": "npm --scripts-prepend-node-path=auto run build:esm2015 -- --watch",
+    "watch:es5": "npm --scripts-prepend-node-path=auto run build:es5 -- --watch",
     "watch:umd": "webpack --watch",
     "lint": "tslint -p ./tsconfig.base.json -s node_modules/custom-tslint-formatters/formatters -t grouped",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm --scripts-prepend-node-path=auto run lint -- --fix"
   },
   "repository": {
     "type": "git",
@@ -71,7 +71,7 @@
     "semantic-release": "^15.9.9",
     "source-map-support": "^0.5.4",
     "ts-loader": "^5.3.0",
-    "ts-node": "^7.0.0",
+    "ts-node": "^8.0.2",
     "tslint": "^5.8.0",
     "typescript": "^3.0.0",
     "webpack": "^4.1.1",

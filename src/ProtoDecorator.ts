@@ -1,22 +1,45 @@
+type Options = Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>;
+
+interface NewDescriptor<T = any> {
+  descriptor: PropertyDescriptor;
+
+  readonly key: PropertyKey;
+
+  readonly kind: 'field' | 'method';
+
+  readonly placement: 'static' | 'prototype' | 'own';
+
+  initializer(): T;
+}
+
+function decorateLegacy(proto: any, prop: PropertyKey, value: any, options?: Options): void {
+  Object.defineProperty(proto, prop, Object.assign(
+    {configurable: true, enumerable: true, writable: true},
+    options,
+    {value}
+  ));
+}
+
+function decorateNew(desc: NewDescriptor, value: any, options?: Options): void {
+  if (desc.kind !== 'field' || desc.placement !== 'own') {
+    throw new Error('@Proto can only decorate instance fields');
+  }
+  Object.assign(desc.descriptor, options);
+  desc.initializer = () => value;
+}
+
 /**
  * Sets a value on the class' prototype
  * @param value The value to set
  * @param options Options to set. Defaults to configurable, enumerable and writable.
  */
-//tslint:disable-next-line:max-line-length
-export function Proto(value: any, options?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>): PropertyDecorator {
-  return (target: any, propertyKey: string) => {
-    const descriptor: PropertyDescriptor = Object.assign(
-      {
-        configurable: true,
-        enumerable: true,
-        value,
-        writable: true
-      },
-      options
-    );
-
-    Object.defineProperty(target.constructor.prototype, propertyKey, descriptor);
+export function Proto(value: any, options?: Options): PropertyDecorator {
+  return (target: any, propertyKey: PropertyKey): void => {
+    if (propertyKey) {
+      decorateLegacy(target.constructor.prototype, propertyKey, value, options);
+    } else {
+      decorateNew(target, value, options);
+    }
   };
 }
 
