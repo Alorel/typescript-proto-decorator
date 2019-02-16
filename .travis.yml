@@ -1,6 +1,10 @@
 language: node_js
 sudo: false
-node_js: stable
+node_js:
+  - stable
+  - lts/dubnium
+  - lts/carbon
+  - lts/boron
 
 env:
   global:
@@ -28,6 +32,7 @@ stages:
 jobs:
   include:
     - stage: Release
+      node_js: stable
       if: branch = master AND type = push AND (NOT tag IS present)
       before_install:
         - npm i -g yarn
