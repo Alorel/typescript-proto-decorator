@@ -12,8 +12,8 @@ interface NewDescriptor<T = any> extends Options {
   initializer(): T;
 }
 
-function decorateLegacy(clazz: any, prop: PropertyKey, value: any, options?: Options): void {
-  Object.defineProperty(clazz.constructor.prototype, prop, Object.assign(
+function decorateLegacy(target: any, prop: PropertyKey, value: any, options?: Options): void {
+  Object.defineProperty(target, prop, Object.assign(
     {configurable: true, enumerable: true, writable: true},
     options,
     {value}
@@ -21,7 +21,7 @@ function decorateLegacy(clazz: any, prop: PropertyKey, value: any, options?: Opt
 }
 
 function decorateNew(desc: NewDescriptor, value: any, options?: Options): void {
-  if (desc.kind !== 'field' || desc.placement !== 'own') {
+  if (desc.kind !== 'field') {
     throw new Error('@Proto can only decorate instance fields');
   }
   Object.assign(desc.descriptor, options);
