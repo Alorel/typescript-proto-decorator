@@ -1,13 +1,13 @@
 type Options = Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>;
 
-interface NewDescriptor<T = any> {
-  descriptor: PropertyDescriptor;
+interface NewDescriptor<T = any> extends Options {
+  descriptor?: Options;
 
   readonly key: PropertyKey;
 
-  readonly kind: 'field' | 'method';
+  readonly kind: string;
 
-  readonly placement: 'static' | 'prototype' | 'own';
+  readonly placement: string;
 
   initializer(): T;
 }
