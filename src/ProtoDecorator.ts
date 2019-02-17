@@ -41,11 +41,11 @@ function decorateNew(desc: NewDescriptor, value: any, options?: Options): NewDes
  * @param options Options to set. Defaults to configurable, enumerable and writable.
  */
 export function Proto(value: any, options?: Options): PropertyDecorator {
-  return (target: any, propertyKey: PropertyKey): void => {
+  return (target: any, propertyKey: PropertyKey): void | NewDescriptor => {
     if (propertyKey) {
       decorateLegacy(target, propertyKey, value, options);
     } else {
-      decorateNew(target, value, options);
+      return decorateNew(target, value, options);
     }
   };
 }
