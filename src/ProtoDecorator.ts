@@ -7,7 +7,7 @@ interface NewDescriptor<T = any> extends Options {
 
   readonly kind: string;
 
-  readonly placement: string;
+  placement: string;
 
   initializer(): T;
 }
@@ -20,13 +20,19 @@ function decorateLegacy(target: any, prop: PropertyKey, value: any, options?: Op
   ));
 }
 
-function decorateNew(desc: NewDescriptor, value: any, options?: Options): void {
+function decorateNew(desc: NewDescriptor, value: any, options?: Options): NewDescriptor {
   if (desc.kind !== 'field') {
     throw new Error('@Proto can only decorate instance fields');
   }
   // Babel sets the descriptor in its own property, but the spec has descriptor fields in the object root.
   Object.assign(desc.descriptor || desc, options);
   desc.initializer = () => value;
+
+  if (desc.placement === 'own') {
+    desc.placement = 'prototype';
+  }
+
+  return desc;
 }
 
 /**
