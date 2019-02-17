@@ -24,7 +24,8 @@ function decorateNew(desc: NewDescriptor, value: any, options?: Options): void {
   if (desc.kind !== 'field') {
     throw new Error('@Proto can only decorate instance fields');
   }
-  Object.assign(desc.descriptor, options);
+  // Babel sets the descriptor in its own property, but the spec has descriptor fields in the object root.
+  Object.assign(desc.descriptor || desc, options);
   desc.initializer = () => value;
 }
 
