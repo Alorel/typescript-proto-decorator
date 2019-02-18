@@ -5,8 +5,6 @@ import {Proto} from '../src/ProtoDecorator';
 interface Spec {
   conf: boolean;
 
-  decorator: any;
-
   enum: boolean;
 
   name: string;
@@ -14,6 +12,8 @@ interface Spec {
   opts?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>;
 
   write: boolean;
+
+  decorator(value: string, opts?: Spec['opts']): PropertyDecorator;
 }
 
 interface Obj {
