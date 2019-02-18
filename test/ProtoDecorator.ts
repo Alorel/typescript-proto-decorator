@@ -2,169 +2,98 @@ import {expect} from 'chai';
 import {Proto} from '../src/ProtoDecorator';
 
 //tslint:disable:max-classes-per-file no-duplicate-string
-describe('ProtoDecorator', () => {
-  interface Obj {
-    prop: string;
+interface Spec {
+  conf: boolean;
+
+  decorator: any;
+
+  enum: boolean;
+
+  name: string;
+
+  opts?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>;
+
+  write: boolean;
+}
+
+interface Obj {
+  prop: string;
+}
+
+const specs: Spec[] = [
+  {
+    conf: true,
+    decorator: Proto,
+    enum: true,
+    name: 'Default settings',
+    write: true
+  },
+  {
+    conf: true,
+    decorator: Proto.hidden,
+    enum: false,
+    name: 'Hidden',
+    write: true
+  },
+  {
+    conf: false,
+    decorator: Proto.immutable,
+    enum: true,
+    name: 'Immutable',
+    write: false
+  },
+  {
+    conf: false,
+    decorator: Proto.immutableHidden,
+    enum: false,
+    name: 'Immutable hidden',
+    write: false
+  },
+  {
+    conf: false,
+    decorator: Proto,
+    enum: false,
+    name: 'Overridden settings',
+    opts: {
+      configurable: false,
+      enumerable: false,
+      writable: false
+    },
+    write: false
   }
+];
 
-  describe('Default settings', () => {
-    let obj: Obj;
-    let desc: PropertyDescriptor;
+describe('ProtoDecorator', () => {
+  for (const spec of specs) {
+    describe(spec.name, () => {
+      let obj: Obj;
+      let desc: PropertyDescriptor;
 
-    before('init obj', () => {
-      class C {
-        @Proto('foo')
-        public prop: string;
-      }
+      before('Init object', () => {
+        class C {
+          @spec.decorator('foo', spec.opts)
+          public prop: string;
+        }
 
-      obj = new C();
+        obj = new C();
+        desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
+      });
 
-      desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
+      it('Value should be foo', () => {
+        expect(obj.prop).to.eq('foo');
+      });
+
+      it(`Configurable should be ${spec.conf.toString()}`, () => {
+        expect(desc.configurable).to.eq(spec.conf);
+      });
+
+      it(`Enumerable should be ${spec.enum.toString()}`, () => {
+        expect(desc.enumerable).to.eq(spec.enum);
+      });
+
+      it(`Writable should be ${spec.write.toString()}`, () => {
+        expect(desc.writable).to.eq(spec.write);
+      });
     });
-
-    it('Value should be foo', () => {
-      expect(obj.prop).to.eq('foo');
-    });
-
-    it('Should be configurable', () => {
-      expect(desc.configurable).to.eq(true);
-    });
-
-    it('Should be enumerable', () => {
-      expect(desc.enumerable).to.eq(true);
-    });
-
-    it('Should be writable', () => {
-      expect(desc.writable).to.eq(true);
-    });
-  });
-
-  describe('Hidden', () => {
-    let obj: Obj;
-    let desc: PropertyDescriptor;
-
-    before('init obj', () => {
-      class C {
-        @Proto.hidden('foo')
-        public prop: string;
-      }
-
-      obj = new C();
-      desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
-    });
-
-    it('Value should be foo', () => {
-      expect(obj.prop).to.eq('foo');
-    });
-
-    it('Should be configurable', () => {
-      expect(desc.configurable).to.eq(true);
-    });
-
-    it('Should not be enumerable', () => {
-      expect(desc.enumerable).to.eq(false);
-    });
-
-    it('Should be writable', () => {
-      expect(desc.writable).to.eq(true);
-    });
-  });
-
-  describe('Immutable', () => {
-    let obj: Obj;
-    let desc: PropertyDescriptor;
-
-    before('init obj', () => {
-      class C {
-        @Proto.immutable('foo')
-        public prop: string;
-      }
-
-      obj = new C();
-      desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
-    });
-
-    it('Value should be foo', () => {
-      expect(obj.prop).to.eq('foo');
-    });
-
-    it('Should not be configurable', () => {
-      expect(desc.configurable).to.eq(false);
-    });
-
-    it('Should be enumerable', () => {
-      expect(desc.enumerable).to.eq(true);
-    });
-
-    it('Should not be writable', () => {
-      expect(desc.writable).to.eq(false);
-    });
-  });
-
-  describe('Immutable Hidden', () => {
-    let obj: Obj;
-    let desc: PropertyDescriptor;
-
-    before('init obj', () => {
-      class C {
-        @Proto.immutableHidden('foo')
-        public prop: string;
-      }
-
-      obj = new C();
-      desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
-    });
-
-    it('Value should be foo', () => {
-      expect(obj.prop).to.eq('foo');
-    });
-
-    it('Should not be configurable', () => {
-      expect(desc.configurable).to.eq(false);
-    });
-
-    it('Should not be enumerable', () => {
-      expect(desc.enumerable).to.eq(false);
-    });
-
-    it('Should not be writable', () => {
-      expect(desc.writable).to.eq(false);
-    });
-  });
-
-  describe('Overridden settings', () => {
-    let obj: Obj;
-    let desc: PropertyDescriptor;
-
-    before('init obj', () => {
-      class C {
-        @Proto('foo', {
-          configurable: false,
-          enumerable: false,
-          writable: false
-        })
-        public prop: string;
-      }
-
-      obj = new C();
-
-      desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
-    });
-
-    it('Value should be foo', () => {
-      expect(obj.prop).to.eq('foo');
-    });
-
-    it('Should not be configurable', () => {
-      expect(desc.configurable).to.eq(false);
-    });
-
-    it('Should not be enumerable', () => {
-      expect(desc.enumerable).to.eq(false);
-    });
-
-    it('Should not be writable', () => {
-      expect(desc.writable).to.eq(false);
-    });
-  });
+  }
 });
