@@ -62,3 +62,5 @@ Proto.immutable = function (value: any): PropertyDecorator {
 Proto.immutableHidden = function (value: any): PropertyDecorator {
   return Proto(value, {writable: false, configurable: false, enumerable: false});
 };
+
+Object.freeze(Proto);
