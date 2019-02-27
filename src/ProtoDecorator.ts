@@ -1,22 +1,56 @@
+type Options = Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>;
+
+interface NewDescriptor<T = any> extends Options {
+  descriptor?: Options;
+
+  readonly key: PropertyKey;
+
+  readonly kind: string;
+
+  placement: string;
+
+  initializer(): T;
+}
+
+function decorateLegacy(target: any, prop: PropertyKey, value: any, options?: Options): PropertyDescriptor {
+  const desc = Object.assign(
+    {configurable: true, enumerable: true, writable: true},
+    options,
+    {value}
+  );
+  Object.defineProperty(target, prop, desc);
+
+  return desc;
+}
+
+function decorateNew(desc: NewDescriptor, value: any, options?: Options): NewDescriptor {
+  if (desc.kind !== 'field') {
+    throw new Error('@Proto can only decorate instance fields');
+  }
+  const newDescriptor = Object.assign({}, desc);
+
+  // Babel sets the descriptor in its own property, but the spec has descriptor fields in the object root.
+  Object.assign(newDescriptor.descriptor || newDescriptor, options);
+  newDescriptor.initializer = () => value;
+
+  // Leave static fields alone, set instance fields on the prototype
+  if (newDescriptor.placement === 'own') {
+    newDescriptor.placement = 'prototype';
+  }
+
+  return newDescriptor;
+}
+
 /**
  * Sets a value on the class' prototype
  * @param value The value to set
  * @param options Options to set. Defaults to configurable, enumerable and writable.
  */
-//tslint:disable-next-line:max-line-length
-export function Proto(value: any, options?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>): PropertyDecorator {
-  return (target: any, propertyKey: string) => {
-    const descriptor: PropertyDescriptor = Object.assign(
-      {
-        configurable: true,
-        enumerable: true,
-        value,
-        writable: true
-      },
-      options
-    );
-
-    Object.defineProperty(target.constructor.prototype, propertyKey, descriptor);
+export function Proto(value: any, options?: Options): PropertyDecorator {
+  return (target: any, propertyKey: PropertyKey): any => {
+    return propertyKey ?
+      decorateLegacy(target, propertyKey, value, options) :
+      decorateNew(target, value, options);
   };
 }
 
@@ -29,3 +63,5 @@ Proto.immutable = function (value: any): PropertyDecorator {
 Proto.immutableHidden = function (value: any): PropertyDecorator {
   return Proto(value, {writable: false, configurable: false, enumerable: false});
 };
+
+Object.freeze(Proto);

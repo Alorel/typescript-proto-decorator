@@ -1,8 +1,7 @@
 /.idea/
 /node_modules/
 /*.tgz
-/test/*.js
-/test/*.js.map
+/test/Proto.*.js
 /src/*.js
 /src/*.js.map
 /dist/
