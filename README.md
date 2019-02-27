@@ -1,12 +1,20 @@
-# Typescript Proto Decorator
+# Proto Decorator
+
+A decorator for setting a property on the class prototype.
 
 [![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=2.1.0)](https://travis-ci.org/Alorel/typescript-proto-decorator)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Alorel/typescript-proto-decorator.svg)](https://greenkeeper.io/)
 
+# Compatibility
+
+- Typescript - full
+- Babel (current proposal) - full
+- Babel (legacy) - the property will be set on class instantiation, but not the prototype.
+
 # Installation
 
 ```sh
-npm install typescript-proto-decorator
+npm install proto-decorator
 ```
 
 # API
@@ -23,7 +31,7 @@ function Proto(value: any, options?: Pick<PropertyDescriptor, 'configurable' | '
 # Usage
 
 ```typescript
-import {Proto} from 'typescript-proto-decorator';
+import {Proto} from 'proto-decorator';
 
 class MyClass {
   
