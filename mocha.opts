@@ -3,6 +3,3 @@
 --full-trace
 -r source-map-support/register
 -t 10000
---trace-deprecation
---trace-warnings
---throw-deprecation
