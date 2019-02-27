@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/Alorel/typescript-proto-decorator/compare/2.1.0...3.0.0) (2019-02-27)
+
+
+### Features
+
+* Babel support (legacy and current proposal) ([bb504a3](https://github.com/Alorel/typescript-proto-decorator/commit/bb504a3)), closes [#21](https://github.com/Alorel/typescript-proto-decorator/issues/21) [#18](https://github.com/Alorel/typescript-proto-decorator/issues/18)
+
+
+### BREAKING CHANGES
+
+* Package renamed to proto-decorator
+
 # [2.1.0](https://github.com/Alorel/typescript-proto-decorator/compare/2.0.2...2.1.0) (2018-11-05)
 
 

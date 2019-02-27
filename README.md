@@ -2,7 +2,7 @@
 
 A decorator for setting a property on the class prototype.
 
-[![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=2.1.0)](https://travis-ci.org/Alorel/typescript-proto-decorator)
+[![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=3.0.0)](https://travis-ci.org/Alorel/typescript-proto-decorator)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Alorel/typescript-proto-decorator.svg)](https://greenkeeper.io/)
 
 # Compatibility
