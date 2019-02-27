@@ -1,26 +1,7 @@
-import {expect} from 'chai';
-import {Proto} from '../src/ProtoDecorator';
+const {expect} = require('chai');
+const {Proto} = require('../dist/es5/ProtoDecorator')
 
-//tslint:disable:max-classes-per-file no-duplicate-string
-interface Spec {
-  conf: boolean;
-
-  enum: boolean;
-
-  name: string;
-
-  opts?: Pick<PropertyDescriptor, 'configurable' | 'enumerable' | 'writable'>;
-
-  write: boolean;
-
-  decorator(value: string, opts?: Spec['opts']): PropertyDecorator;
-}
-
-interface Obj {
-  prop: string;
-}
-
-const specs: Spec[] = [
+const specs = [
   {
     conf: true,
     decorator: Proto,
@@ -61,25 +42,27 @@ const specs: Spec[] = [
     },
     write: false
   }
-];
+]
 
 describe('ProtoDecorator', () => {
   for (const spec of specs) {
     describe(spec.name, () => {
-      let obj: Obj;
-      let desc: PropertyDescriptor;
+      let obj;
+      let desc;
+      let proto;
 
       before('Init object', () => {
         class C {
           @spec.decorator('foo', spec.opts)
-          public prop: string;
+          prop;
         }
 
         obj = new C();
+        proto = C;
         desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
       });
 
-      it('Value should be foo', () => {
+      it('Instance should be foo', () => {
         expect(obj.prop).to.eq('foo');
       });
 

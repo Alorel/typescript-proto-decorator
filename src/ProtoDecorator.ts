@@ -12,12 +12,15 @@ interface NewDescriptor<T = any> extends Options {
   initializer(): T;
 }
 
-function decorateLegacy(target: any, prop: PropertyKey, value: any, options?: Options): void {
-  Object.defineProperty(target, prop, Object.assign(
+function decorateLegacy(target: any, prop: PropertyKey, value: any, options?: Options): PropertyDescriptor {
+  const desc = Object.assign(
     {configurable: true, enumerable: true, writable: true},
     options,
     {value}
-  ));
+  );
+  Object.defineProperty(target, prop, desc);
+
+  return desc;
 }
 
 function decorateNew(desc: NewDescriptor, value: any, options?: Options): NewDescriptor {
@@ -44,9 +47,9 @@ function decorateNew(desc: NewDescriptor, value: any, options?: Options): NewDes
  * @param options Options to set. Defaults to configurable, enumerable and writable.
  */
 export function Proto(value: any, options?: Options): PropertyDecorator {
-  return (target: any, propertyKey: PropertyKey): void | NewDescriptor => {
+  return (target: any, propertyKey: PropertyKey): any => {
     if (propertyKey) {
-      decorateLegacy(target, propertyKey, value, options);
+      return decorateLegacy(target, propertyKey, value, options);
     } else {
       return decorateNew(target, value, options);
     }
