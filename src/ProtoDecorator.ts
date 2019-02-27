@@ -48,11 +48,9 @@ function decorateNew(desc: NewDescriptor, value: any, options?: Options): NewDes
  */
 export function Proto(value: any, options?: Options): PropertyDecorator {
   return (target: any, propertyKey: PropertyKey): any => {
-    if (propertyKey) {
-      return decorateLegacy(target, propertyKey, value, options);
-    } else {
-      return decorateNew(target, value, options);
-    }
+    return propertyKey ?
+      decorateLegacy(target, propertyKey, value, options) :
+      decorateNew(target, value, options);
   };
 }
 
