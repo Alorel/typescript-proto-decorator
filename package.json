@@ -1,6 +1,6 @@
 {
   "name": "proto-decorator",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Sets a value on a class' prototype",
   "main": "ProtoDecorator.js",
   "browser": "_bundle/umd.js",

@@ -1,3 +1,21 @@
+## [3.0.1](https://github.com/Alorel/typescript-proto-decorator/compare/3.0.0...3.0.1) (2019-02-28)
+
+
+### Documentation
+
+* Update compatibility ([796e57f](https://github.com/Alorel/typescript-proto-decorator/commit/796e57f))
+
+
+### Maintenance
+
+* Clean up dist package ([2e14731](https://github.com/Alorel/typescript-proto-decorator/commit/2e14731))
+
+
+### Tests
+
+* Test prototype property ([04888af](https://github.com/Alorel/typescript-proto-decorator/commit/04888af))
+* Test setting the property on a static field ([c7e34bd](https://github.com/Alorel/typescript-proto-decorator/commit/c7e34bd))
+
 # [3.0.0](https://github.com/Alorel/typescript-proto-decorator/compare/2.1.0...3.0.0) (2019-02-27)
 
 
