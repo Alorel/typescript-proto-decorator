@@ -49,7 +49,7 @@ describe('ProtoDecorator', () => {
     describe(spec.name, () => {
       let obj;
       let desc;
-      let proto;
+      let clazz;
 
       before('Init object', () => {
         class C {
@@ -58,12 +58,16 @@ describe('ProtoDecorator', () => {
         }
 
         obj = new C();
-        proto = C;
+        clazz = C;
         desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
       });
 
-      it('Instance should be foo', () => {
+      it('Instance property should be foo', () => {
         expect(obj.prop).to.eq('foo');
+      });
+
+      it('Prototype property should be foo', () => {
+        expect(clazz.prototype.prop).to.eq('foo');
       });
 
       it(`Configurable should be ${spec.conf.toString()}`, () => {
