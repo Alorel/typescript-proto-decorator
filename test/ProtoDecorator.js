@@ -42,24 +42,28 @@ const specs = [
     },
     write: false
   }
-]
+];
 
 describe('ProtoDecorator', () => {
   for (const spec of specs) {
     describe(spec.name, () => {
       let obj;
-      let desc;
+      let instDesc;
+      let staticDesc;
       let clazz;
 
       before('Init object', () => {
         class C {
+          @spec.decorator('bar', spec.opts)
+          static staticProp;
           @spec.decorator('foo', spec.opts)
           prop;
         }
 
         obj = new C();
         clazz = C;
-        desc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
+        instDesc = Object.getOwnPropertyDescriptor(C.prototype, 'prop');
+        staticDesc = Object.getOwnPropertyDescriptor(C, 'staticProp');
       });
 
       it('Instance property should be foo', () => {
@@ -70,16 +74,32 @@ describe('ProtoDecorator', () => {
         expect(clazz.prototype.prop).to.eq('foo');
       });
 
-      it(`Configurable should be ${spec.conf.toString()}`, () => {
-        expect(desc.configurable).to.eq(spec.conf);
+      it(`Instance configurable should be ${spec.conf.toString()}`, () => {
+        expect(instDesc.configurable).to.eq(spec.conf);
       });
 
-      it(`Enumerable should be ${spec.enum.toString()}`, () => {
-        expect(desc.enumerable).to.eq(spec.enum);
+      it(`Instance enumerable should be ${spec.enum.toString()}`, () => {
+        expect(instDesc.enumerable).to.eq(spec.enum);
       });
 
-      it(`Writable should be ${spec.write.toString()}`, () => {
-        expect(desc.writable).to.eq(spec.write);
+      it(`Instance writable should be ${spec.write.toString()}`, () => {
+        expect(instDesc.writable).to.eq(spec.write);
+      });
+
+      it('Static property should be bar', () => {
+        expect(clazz.staticProp).to.eq('bar');
+      });
+
+      it(`Static configurable should be ${spec.conf.toString()}`, () => {
+        expect(staticDesc.configurable).to.eq(spec.conf);
+      });
+
+      it(`Static enumerable should be ${spec.enum.toString()}`, () => {
+        expect(staticDesc.enumerable).to.eq(spec.enum);
+      });
+
+      it(`Instance writable should be ${spec.write.toString()}`, () => {
+        expect(staticDesc.writable).to.eq(spec.write);
       });
     });
   }

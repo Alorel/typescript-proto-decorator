@@ -16,7 +16,7 @@
   "scripts": {
     "pretest:legacy": "babel --config-file ./.babelrc.legacy -o test/Proto.legacy.js test/ProtoDecorator.js",
     "pretest:new": "babel --config-file ./.babelrc.new -o test/Proto.new.js test/ProtoDecorator.js",
-    "test": "npm --scripts-prepend-node-path=auto run test:legacy && npm --scripts-prepend-node-path=auto run test:new",
+    "test": "concurrently \"npm:test:*\"",
     "test:legacy": "mocha --opts ./mocha.opts test/Proto.legacy.js",
     "test:new": "mocha --opts ./mocha.opts test/Proto.new.js",
     "pretest": "npm --scripts-prepend-node-path=auto run build:es5",
