@@ -44,7 +44,7 @@ const specs = [
   }
 ];
 
-describe('ProtoDecorator', () => {
+describe(`ProtoDecorator (${TEST_TYPE})`, () => {
   for (const spec of specs) {
     describe(spec.name, () => {
       let obj;
@@ -103,4 +103,47 @@ describe('ProtoDecorator', () => {
       });
     });
   }
+
+  (TEST_TYPE === 'new' ? describe : describe.skip)('Invalid decorations', () => {
+    const ERROR_MSG = '@Proto can only decorate instance fields';
+
+    it('Should throw when decorating a class', () => {
+      expect(() => {
+        @Proto('foo')
+        class C {
+
+        }
+      }).to.throw(ERROR_MSG)
+    });
+
+    it('Should throw when decorating an instance method', () => {
+      expect(() => {
+        class C {
+          @Proto('foo')
+          foo() {
+          }
+        }
+      }).to.throw(ERROR_MSG)
+    });
+
+    it('Should throw when decorating a static method', () => {
+      expect(() => {
+        class C {
+          @Proto('foo')
+          static foo() {
+          }
+        }
+      }).to.throw(ERROR_MSG)
+    });
+
+    it('Should throw when decorating an accessor', () => {
+      expect(() => {
+        class C {
+          @Proto('foo')
+          get foo() {
+          }
+        }
+      }).to.throw(ERROR_MSG)
+    });
+  });
 });

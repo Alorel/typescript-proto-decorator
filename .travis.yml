@@ -19,7 +19,7 @@ before_install:
 
 install: yarn install --ignore-engines
 
-script: yarn run lint && yarn test
+script: npm run lint && npm test
 
 after_script: if [[ $GH_TOKEN ]]; then greenkeeper-lockfile-upload; fi;
 
@@ -35,6 +35,6 @@ jobs:
       before_install:
         - npm i -g yarn
         - *prepKey
-      before_script: yarn run build
+      before_script: npm run build
       script: semantic-release
       after_script: []
