@@ -22,6 +22,7 @@ install: yarn install --ignore-engines
 script: npm run lint && npm test
 
 after_script: if [[ $GH_TOKEN ]]; then greenkeeper-lockfile-upload; fi;
+after_success: cat ./coverage/lcov.info | coveralls
 
 stages:
   - Test
@@ -38,3 +39,4 @@ jobs:
       before_script: npm run build
       script: semantic-release
       after_script: []
+      after_success: []
