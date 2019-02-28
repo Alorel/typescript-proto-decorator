@@ -8,8 +8,9 @@ A decorator for setting a property on the class prototype.
 # Compatibility
 
 - Typescript - full
+- Spec-compliant decorator proposal - full
 - Babel (current proposal) - full
-- Babel (legacy) - the property will be set on class instantiation, but not the prototype.
+- Babel (legacy) - full
 
 # Installation
 
