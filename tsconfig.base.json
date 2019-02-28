@@ -1,24 +1,23 @@
 {
   "compilerOptions": {
-    "moduleResolution":               "node",
-    "target":                         "es5",
-    "module":                         "es2015",
-    "noUnusedLocals":                 true,
-    "sourceMap":                      true,
-    "declaration":                    false,
-    "noImplicitAny":                  true,
-    "newLine":                        "lf",
-    "noFallthroughCasesInSwitch":     true,
+    "moduleResolution": "node",
+    "target": "es5",
+    "module": "es2015",
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "declaration": false,
+    "noImplicitAny": true,
+    "newLine": "lf",
+    "noFallthroughCasesInSwitch": true,
     "suppressImplicitAnyIndexErrors": true,
-    "experimentalDecorators":         true,
-    "emitDecoratorMetadata":          true,
-    "removeComments":                 false,
-    "allowUnreachableCode":           false,
-    "allowUnusedLabels":              false,
-    "noImplicitUseStrict":            true,
-    "stripInternal":                  true
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "removeComments": false,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "stripInternal": true
   },
-  "exclude":         [
+  "exclude": [
     "node_modules",
     "dist"
   ]

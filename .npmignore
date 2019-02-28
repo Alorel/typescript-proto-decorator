@@ -2,6 +2,7 @@
 /node_modules/
 /*.tgz
 /.babelrc.*
+/.alobuild.yml
 /test/
 /src/
 /tslint.json

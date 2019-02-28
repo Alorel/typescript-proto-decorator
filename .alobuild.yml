@@ -1,0 +1,23 @@
+global:
+  dist-dirs: &distDirs dist
+  tsconfig: tsconfig.base.json
+
+copy-files:
+  from:
+    - package.json
+    - LICENSE
+    - CHANGELOG.md
+    - README.md
+  to: *distDirs
+
+build:
+  entry: src/ProtoDecorator.ts
+  targets:
+    - cjs
+    - declaration
+    - esm5
+    - esm2015
+    - umd
+  license-banner: true
+  out: *distDirs
+  umd-name: ProtoDecorator

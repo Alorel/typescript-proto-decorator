@@ -1,5 +1,5 @@
 const {expect} = require('chai');
-const {Proto} = require('../dist/es5/ProtoDecorator')
+const {Proto} = require('../dist/ProtoDecorator');
 
 const specs = [
   {
