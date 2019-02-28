@@ -1,5 +1,4 @@
 --check-leaks
 --exit
 --full-trace
--r source-map-support/register
 -t 10000
