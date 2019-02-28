@@ -1,9 +1,13 @@
 # Proto Decorator
 
-A decorator for setting a property on the class prototype.
+A decorator for setting a property on the class prototype
+(previously known as [typescript-proto-decorator](https://www.npmjs.com/package/typescript-proto-decorator)).
 
 [![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=3.0.1)](https://travis-ci.org/Alorel/typescript-proto-decorator)
+[![Coverage Status](https://coveralls.io/repos/github/Alorel/typescript-proto-decorator/badge.svg?branch=master)](https://coveralls.io/github/Alorel/typescript-proto-decorator?branch=master)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Alorel/typescript-proto-decorator.svg)](https://greenkeeper.io/)
+
+[![NPM](https://nodei.co/npm/proto-decorator.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/proto-decorator)
 
 # Compatibility
 
@@ -11,12 +15,6 @@ A decorator for setting a property on the class prototype.
 - Spec-compliant decorator proposal - full
 - Babel (current proposal) - full
 - Babel (legacy) - full
-
-# Installation
-
-```sh
-npm install proto-decorator
-```
 
 # API
 
@@ -52,4 +50,4 @@ class MyClass {
 - You can use `@Proto.hidden` as a shortcut for `{configurable: true, enumerable: false, writable: true}`.
 - You can use `@Proto.immutableHidden` as a shortcut for `{configurable: false, enumerable: false, writable: false}`.
 
-The UMD global is `ProtoDecorator`.
+The UMD global name is `ProtoDecorator`.
