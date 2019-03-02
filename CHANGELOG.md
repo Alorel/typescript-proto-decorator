@@ -1,3 +1,15 @@
+## [3.0.3](https://github.com/Alorel/typescript-proto-decorator/compare/3.0.2...3.0.3) (2019-03-02)
+
+
+### Bug Fixes
+
+* Stricter legacy vs proposed decorator checking ([a8f9a11](https://github.com/Alorel/typescript-proto-decorator/commit/a8f9a11))
+
+
+### Tests
+
+* Test typescript decorator ([edbf972](https://github.com/Alorel/typescript-proto-decorator/commit/edbf972))
+
 ## [3.0.2](https://github.com/Alorel/typescript-proto-decorator/compare/3.0.1...3.0.2) (2019-02-28)
 
 
