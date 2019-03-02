@@ -6,9 +6,9 @@
   "scripts": {
     "test:babel:legacy": "babel --config-file ./.babelrc.legacy -o test/Proto.legacy.js test/ProtoDecorator.js",
     "test:babel:new": "babel --config-file ./.babelrc.new -o test/Proto.new.js test/ProtoDecorator.js",
-    "test:babel": "concurrently \"npm:test:babel:*\"",
     "test": "nyc mocha --check-leaks --exit --full-trace test/Proto.legacy.js test/Proto.new.js test/Proto.typescript.js",
-    "pretest": "concurrently -n build,tsc-test,clean,babel,preprocess \"alo build --targets cjs\" \"tsc -p tsconfig.test.json\" \"rimraf coverage\" \"npm run test:babel && ts-node pretest-postprocess.ts\"",
+    "test:compile": "concurrently -n tsc:test \"tsc -p tsconfig.test.json\" \"npm:test:babel:*\"",
+    "pretest": "concurrently -n build:src,build:test,clean \"alo build --targets cjs\" \"npm run test:compile && ts-node pretest-postprocess.ts\" \"rimraf coverage\"",
     "build": "alo build",
     "prewatch": "npmrun prebuild",
     "watch": "tsc -p tsconfig.es5.json --watch",
