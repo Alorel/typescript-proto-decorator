@@ -9,7 +9,7 @@
     "noFallthroughCasesInSwitch": true,
     "suppressImplicitAnyIndexErrors": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
+    "emitDecoratorMetadata": false,
     "removeComments": false,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
