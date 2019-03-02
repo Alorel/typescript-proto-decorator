@@ -1,4 +1,0 @@
---check-leaks
---exit
---full-trace
--t 10000

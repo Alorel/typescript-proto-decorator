@@ -4,7 +4,7 @@ import {join} from 'path';
 
 const root = join(__dirname, 'test');
 
-for (const type of ['legacy', 'new']) {
+for (const type of ['legacy', 'new', 'typescript']) {
   const path = join(root, `Proto.${type}.js`);
   let contents = fs.readFileSync(path, 'utf8');
 

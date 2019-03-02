@@ -2,6 +2,7 @@
   "extends": "./tsconfig.base",
   "compilerOptions": {
     "rootDir": "./src",
+    "sourceMap": true,
     "lib": [
       "ES5",
       "ES6"

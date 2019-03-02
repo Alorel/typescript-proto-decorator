@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.base",
+  "compilerOptions": {
+    "lib": [
+      "esnext"
+    ],
+    "declaration": false,
+    "importHelpers": false,
+    "inlineSourceMap": true,
+    "checkJs": false,
+    "allowJs": true,
+    "outFile": "test/Proto.typescript.js"
+  },
+  "files": [
+    "test/ProtoDecorator.js"
+  ]
+}
