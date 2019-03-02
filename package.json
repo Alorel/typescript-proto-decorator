@@ -12,7 +12,7 @@
     "build": "alo build",
     "prewatch": "npmrun prebuild",
     "watch": "tsc -p tsconfig.es5.json --watch",
-    "lint": "alo tslint -p ./tsconfig.base.json",
+    "lint": "alo tslint -p ./tsconfig.lib.json",
     "lint:fix": "npm run lint -- --fix"
   },
   "repository": {

@@ -48,9 +48,9 @@ function decorateNew(desc: NewDescriptor, value: any, options?: Options): NewDes
  */
 export function Proto(value: any, options?: Options): PropertyDecorator {
   return (target: any, propertyKey: PropertyKey): any => {
-    return propertyKey ?
-      decorateLegacy(target, propertyKey, value, options) :
-      decorateNew(target, value, options);
+    return propertyKey === undefined ?
+      decorateNew(target, value, options) :
+      decorateLegacy(target, propertyKey, value, options);
   };
 }
 

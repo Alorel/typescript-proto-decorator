@@ -15,8 +15,8 @@ build:
   targets:
     - cjs
     - declaration
-    - esm5
-    - esm2015
+    - fesm5
+    - fesm2015
     - umd
   license-banner: true
   out: *distDirs
