@@ -104,46 +104,49 @@ describe(`ProtoDecorator (${TEST_TYPE})`, () => {
     });
   }
 
-  (TEST_TYPE === 'new' ? describe : describe.skip)('Invalid decorations', () => {
-    const ERROR_MSG = '@Proto can only decorate instance fields';
+  if (TEST_TYPE === 'new') {
 
-    it('Should throw when decorating a class', () => {
-      expect(() => {
-        @Proto('foo')
-        class C {
+    describe('Invalid decorations', () => {
+      const ERROR_MSG = '@Proto can only decorate instance fields';
 
-        }
-      }).to.throw(ERROR_MSG)
-    });
-
-    it('Should throw when decorating an instance method', () => {
-      expect(() => {
-        class C {
+      it('Should throw when decorating a class', () => {
+        expect(() => {
           @Proto('foo')
-          foo() {
-          }
-        }
-      }).to.throw(ERROR_MSG)
-    });
+          class C {
 
-    it('Should throw when decorating a static method', () => {
-      expect(() => {
-        class C {
-          @Proto('foo')
-          static foo() {
           }
-        }
-      }).to.throw(ERROR_MSG)
-    });
+        }).to.throw(ERROR_MSG)
+      });
 
-    it('Should throw when decorating an accessor', () => {
-      expect(() => {
-        class C {
-          @Proto('foo')
-          get foo() {
+      it('Should throw when decorating an instance method', () => {
+        expect(() => {
+          class C {
+            @Proto('foo')
+            foo() {
+            }
           }
-        }
-      }).to.throw(ERROR_MSG)
+        }).to.throw(ERROR_MSG)
+      });
+
+      it('Should throw when decorating a static method', () => {
+        expect(() => {
+          class C {
+            @Proto('foo')
+            static foo() {
+            }
+          }
+        }).to.throw(ERROR_MSG)
+      });
+
+      it('Should throw when decorating an accessor', () => {
+        expect(() => {
+          class C {
+            @Proto('foo')
+            get foo() {
+            }
+          }
+        }).to.throw(ERROR_MSG)
+      });
     });
-  });
+  }
 });
