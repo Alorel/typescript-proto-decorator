@@ -9,6 +9,8 @@ interface NewDescriptor<T = any> extends Options {
 
   placement: string;
 
+  initialize(): T;
+
   initializer(): T;
 }
 
@@ -28,10 +30,14 @@ function decorateNew(desc: NewDescriptor, value: any, options?: Options): NewDes
     throw new Error('@Proto can only decorate instance fields');
   }
   const newDescriptor = Object.assign({}, desc);
+  if (newDescriptor.descriptor) {
+    newDescriptor.descriptor = Object.assign({}, newDescriptor.descriptor);
+  }
 
   // Babel sets the descriptor in its own property, but the spec has descriptor fields in the object root.
   Object.assign(newDescriptor.descriptor || newDescriptor, options);
   newDescriptor.initializer = () => value;
+  newDescriptor.initialize = newDescriptor.initializer;
 
   // Leave static fields alone, set instance fields on the prototype
   if (newDescriptor.placement === 'own') {
