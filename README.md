@@ -3,8 +3,8 @@
 A decorator for setting a property on the class prototype
 (previously known as [typescript-proto-decorator](https://www.npmjs.com/package/typescript-proto-decorator)).
 
-[![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=3.0.3)](https://travis-ci.org/Alorel/typescript-proto-decorator)
-[![Coverage Status](https://coveralls.io/repos/github/Alorel/typescript-proto-decorator/badge.svg?branch=3.0.3)](https://coveralls.io/github/Alorel/typescript-proto-decorator?branch=3.0.3)
+[![Build Status](https://travis-ci.org/Alorel/typescript-proto-decorator.png?branch=3.0.4)](https://travis-ci.org/Alorel/typescript-proto-decorator)
+[![Coverage Status](https://coveralls.io/repos/github/Alorel/typescript-proto-decorator/badge.svg?branch=3.0.4)](https://coveralls.io/github/Alorel/typescript-proto-decorator?branch=3.0.4)
 [![Greenkeeper badge](https://badges.greenkeeper.io/Alorel/typescript-proto-decorator.svg)](https://greenkeeper.io/)
 
 [![NPM](https://nodei.co/npm/proto-decorator.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/proto-decorator)

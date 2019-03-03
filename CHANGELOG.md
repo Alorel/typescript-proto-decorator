@@ -1,3 +1,10 @@
+## [3.0.4](https://github.com/Alorel/typescript-proto-decorator/compare/3.0.3...3.0.4) (2019-03-03)
+
+
+### Bug Fixes
+
+* ensure both initialise and initialiser properties are present when using the new decorators proposal ([5b0d911](https://github.com/Alorel/typescript-proto-decorator/commit/5b0d911))
+
 ## [3.0.3](https://github.com/Alorel/typescript-proto-decorator/compare/3.0.2...3.0.3) (2019-03-02)
 
 
