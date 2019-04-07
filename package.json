@@ -54,7 +54,7 @@
     "chai": "^4.1.2",
     "concurrently": "^4.0.0",
     "coveralls": "^3.0.3",
-    "mocha": "^6.0.2",
+    "mocha": "^6.1.1",
     "nyc": "^13.3.0",
     "rimraf": "^2.6.2",
     "semantic-release": "^15.9.9",
