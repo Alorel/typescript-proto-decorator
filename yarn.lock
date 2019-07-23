@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alorel-personal/build-tools@4.5.16":
-  version "4.5.16"
-  resolved "https://registry.yarnpkg.com/@alorel-personal/build-tools/-/build-tools-4.5.16.tgz#955832db552ed171612a627a0d1b7be690c3446c"
-  integrity sha512-eQqKix0hCWbAYkoc4BrYnPIydxrqk2g+Iw3VZ62fR8FpZ+jwjM0rET29DdCFSUFLmgs0tyyLbKaCbJV6aq3cTA==
+"@alorel-personal/build-tools@4.5.17":
+  version "4.5.17"
+  resolved "https://registry.yarnpkg.com/@alorel-personal/build-tools/-/build-tools-4.5.17.tgz#c436a00ce50e41abc65a3a51a6932bde16735f49"
+  integrity sha512-I6zRJLcDAwk0UqEXq1anwnlWfx4gUQp/wMZ20znPHwNELe/iy7AJXuuiwwLmXC0mL3H84l4OD8U4xPvo+Te1Fw==
   dependencies:
     chalk "^2.4.2"
     cross-spawn "^6.0.0"
@@ -52,10 +52,10 @@
     fs-extra "^7.0.0"
     tslib "^1.6.0"
 
-"@alorel-personal/tslint-rules@5.0.4":
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/@alorel-personal/tslint-rules/-/tslint-rules-5.0.4.tgz#91647fc404b0d9cb969f653afd537dfa55af7e5e"
-  integrity sha512-yV2V2fB0N6a1VTIVLEEBxur8wlHJyo/awV4X0+qLunLBs8d4bx15KQP03o4mpGE6qMxsNgYBfcqC7Nvx5YXSCQ==
+"@alorel-personal/tslint-rules@5.0.5":
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/@alorel-personal/tslint-rules/-/tslint-rules-5.0.5.tgz#5ba764a57296608ef58a3b0cc46aaf06924802ed"
+  integrity sha512-CxHyF9ajKQDZvDef7BGVHZnziB0huW+xkmghr4kPBRJczc/FJ+5/E8IRoz3vNFbr9HPA0XW/y8/qOdrLi3c7Dg==
   dependencies:
     tslint "^5.18.0"
     tslint-sonarts "^1.9.0"
