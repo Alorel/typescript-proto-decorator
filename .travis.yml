@@ -7,6 +7,7 @@ node_js:
 env:
   global:
     - GK_LOCK_YARN_OPTS=--ignore-engines
+    - COVERALLS_PARALLEL=true
 
 cache:
   yarn: true
@@ -37,3 +38,6 @@ jobs:
       script: semantic-release
       after_script: []
       after_success: []
+
+notifications:
+  webhooks: https://coveralls.io/webhook
