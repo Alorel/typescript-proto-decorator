@@ -10,6 +10,7 @@
     "test:compile": "concurrently -n tsc:test \"tsc -p tsconfig.test.json\" \"npm:test:babel:*\"",
     "pretest": "concurrently -n build:src,build:test,clean \"alo build --targets cjs\" \"npm run test:compile && ts-node pretest-postprocess.ts\" \"rimraf coverage\"",
     "build": "alo build",
+    "release": "semantic-release",
     "prewatch": "npmrun prebuild",
     "watch": "tsc -p tsconfig.es5.json --watch",
     "lint": "alo tslint -p ./tsconfig.lib.json",
@@ -61,6 +62,5 @@
     "source-map-support": "^0.5.11",
     "ts-node": "^8.0.3",
     "typescript": "^3.0.0"
-  },
-  "dependencies": {}
+  }
 }
