@@ -1,6 +1,6 @@
 {
   "name": "proto-decorator",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Sets a value on a class' prototype",
   "main": "ProtoDecorator.js",
   "scripts": {
@@ -62,5 +62,14 @@
     "source-map-support": "^0.5.21",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.5"
-  }
+  },
+  "browser": "_bundle/umd.js",
+  "jsdelivr": "_bundle/umd.min.js",
+  "fesm5": "_bundle/fesm5.js",
+  "esm5": "_bundle/fesm5.js",
+  "fesm2015": "_bundle/fesm2015.js",
+  "esm2015": "_bundle/fesm5.js",
+  "types": "ProtoDecorator.d.ts",
+  "module": "_bundle/fesm5.js",
+  "typings": "ProtoDecorator.d.ts"
 }

@@ -1,3 +1,26 @@
+## [3.0.5](https://github.com/Alorel/typescript-proto-decorator/compare/3.0.4...3.0.5) (2022-02-04)
+
+
+### Bug Fixes
+
+* **ci:** Move to github actions ([](https://github.com/Alorel/typescript-proto-decorator/commit/a8ae688))
+
+
+### Maintenance
+
+* Update dependencies ([](https://github.com/Alorel/typescript-proto-decorator/commit/7771769))
+* Update license year ([](https://github.com/Alorel/typescript-proto-decorator/commit/347a67a))
+
+
+### Performance Improvements
+
+* Don't define prop on prototype twice ([](https://github.com/Alorel/typescript-proto-decorator/commit/2ce6364))
+
+
+### Tests
+
+* Refactor to avoid describe.skip ([](https://github.com/Alorel/typescript-proto-decorator/commit/43e5784))
+
 ## [3.0.4](https://github.com/Alorel/typescript-proto-decorator/compare/3.0.3...3.0.4) (2019-03-03)
 
 
